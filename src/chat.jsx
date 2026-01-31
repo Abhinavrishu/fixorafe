@@ -38,7 +38,7 @@ export default function Chat() {
         const form = new FormData();
         form.append("file", file);
 
-        res = await fetch("http://localhost:3000/ask", {
+        res = await fetch("https://fixorabe.onrender.com/ask", {
           method: "POST",
         
           body: form
@@ -48,7 +48,7 @@ export default function Chat() {
       // CASE 2 → TEXT
       else {
 
-        res = await fetch("http://localhost:3000/ask", {
+        res = await fetch("https://fixorabe.onrender.com/ask", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ text: input })
