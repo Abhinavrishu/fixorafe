@@ -64,7 +64,7 @@ export default function Chat() {
 
     } catch (err) {
 
-      setMessages(prev => [
+      setMessages(err,prev => [
         ...prev,
         { from: "ai", text: "❌ Server error. Try again." }
       ]);

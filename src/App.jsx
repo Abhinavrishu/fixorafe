@@ -1,10 +1,11 @@
-import Header from "./header.jsx";
+   
 import Chat from "./chat.jsx";
-
+import Navbar from "./Navbar.jsx";
 export default function App() {
   return (
     <div className="app">
-      <Header />
+      <Navbar></Navbar>
+      
       <Chat />
     </div>
   );
