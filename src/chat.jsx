@@ -15,12 +15,21 @@ export default function Chat() {
   const imageInputRef = useRef(null);
 
   async function handleSend() {
+    const text = input.trim();
 
-    if (!input.trim() && !file) return;
+    if (!text && !file) return;
+
+    const history = messages
+      .filter((msg) => msg.text)
+      .slice(-8)
+      .map((msg) => ({
+        role: msg.from === "user" ? "user" : "assistant",
+        text: msg.text
+      }));
 
     const userMsg = {
       from: "user",
-      text: input || "📎 File uploaded",
+      text: text || "📎 File uploaded",
       fileName: file?.name
     };
 
@@ -29,29 +38,23 @@ export default function Chat() {
     setLoading(true);
 
     try {
-
+      const API_BASE_URL = (import.meta.env.VITE_API_URL || "https://fixorabe.onrender.com").replace(/\/$/, "");
       let res;
 
-      // CASE 1 → FILE
       if (file) {
-
         const form = new FormData();
         form.append("file", file);
+        form.append("history", JSON.stringify(history));
 
-        res = await fetch("https://fixorabe.onrender.com/ask", {
+        res = await fetch(`${API_BASE_URL}/ask`, {
           method: "POST",
-        
           body: form
         });
-      }
-
-      // CASE 2 → TEXT
-      else {
-
-        res = await fetch("https://fixorabe.onrender.com/ask", {
+      } else {
+        res = await fetch(`${API_BASE_URL}/ask`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: input })
+          body: JSON.stringify({ text, history })
         });
       }
 
@@ -59,12 +62,12 @@ export default function Chat() {
 
       setMessages(prev => [
         ...prev,
-        { from: "ai", text: data.answer }
+        { from: "ai", text: data.answer || data.error || "No answer returned." }
       ]);
 
-    } catch (err) {
+    } catch {
 
-      setMessages(err,prev => [
+      setMessages(prev => [
         ...prev,
         { from: "ai", text: "❌ Server error. Try again." }
       ]);
