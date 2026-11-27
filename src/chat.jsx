@@ -105,7 +105,6 @@ export default function Chat() {
         )}
       </div>
 
-      {/* INPUT AREA */}
       <div
         className="input-bar drop-zone"
         onDrop={handleDrop}
@@ -124,7 +123,6 @@ export default function Chat() {
           {loading ? "..." : "SEND"}
         </button>
 
-        {/* Hidden inputs */}
         <input
           type="file"
           ref={fileInputRef}
@@ -141,7 +139,6 @@ export default function Chat() {
         />
       </div>
 
-      {/* FILE PREVIEW */}
       {file && (
         <div className="file-preview">
           📎 {file.name}

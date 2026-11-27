@@ -17,7 +17,6 @@ body {
   height: 100vh;
 }
 
-/* HEADER */
 .header {
   padding: 16px;
   border-bottom: 1px solid #1f1f1f;
@@ -37,7 +36,6 @@ body {
   color: #999;
 }
 
-/* CHAT */
 .chat-container {
   flex: 1;
   display: flex;
@@ -50,7 +48,6 @@ body {
   overflow-y: auto;
 }
 
-/* MESSAGE */
 .message {
   max-width: 70%;
   margin-bottom: 12px;
@@ -71,7 +68,6 @@ body {
   align-self: flex-start;
 }
 
-/* INPUT */
 .input-bar {
   display: flex;
   padding: 12px;
