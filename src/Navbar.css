@@ -31,16 +31,3 @@
 .copy-btn:hover {
   background: #334155;
 }
-
-.download-btn {
-  background: #22c55e;
-  color: #022c22;
-  padding: 8px 14px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.download-btn:hover {
-  background: #16a34a;
-}

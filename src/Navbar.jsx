@@ -12,29 +12,23 @@ export default function Navbar() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  return (<div>
-     <header className="header">
-      <h1>
-        <span className="red">FIXORA </span>AI CYBER OPS
-      </h1>
-      <p>Threat Analysis • Red Team • AI Assistant</p>
-    </header>
-    <nav className="navbar">
-      <div className="logo">Fixora</div>
+  return (
+    <div>
+      <header className="header">
+        <h1>
+          <span className="red">FIXORA </span>AI CYBER OPS
+        </h1>
+        <p>Threat Analysis • Red Team • AI Assistant</p>
+      </header>
+      <nav className="navbar">
+        <div className="logo">Fixora</div>
 
-      <div className="nav-actions">
-        <button className="copy-btn" onClick={copyCommand}>
-          {copied ? "✅ Copied" : "📋 Copy Install Command"}
-        </button>
-
-        <a
-          href="/fixora-0.0.1.vsix"
-          download
-          className="download-btn"
-        >
-          ⬇️ Download Extension
-        </a>
-      </div>
-    </nav>
- </div> );
+        <div className="nav-actions">
+          <button className="copy-btn" onClick={copyCommand}>
+            {copied ? "✅ Copied" : "📋 Copy Install Command"}
+          </button>
+        </div>
+      </nav>
+    </div>
+  );
 }

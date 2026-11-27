@@ -44,6 +44,7 @@ export default function Chat() {
       if (file) {
         const form = new FormData();
         form.append("file", file);
+        if (text) form.append("text", text);
         form.append("history", JSON.stringify(history));
 
         res = await fetch(`${API_BASE_URL}/ask`, {
@@ -59,10 +60,13 @@ export default function Chat() {
       }
 
       const data = await res.json();
+      const stored = data.ingested?.chunks
+        ? `Stored ${data.ingested.chunks} chunks from ${data.ingested.source}.\n\n`
+        : "";
 
       setMessages(prev => [
         ...prev,
-        { from: "ai", text: data.answer || data.error || "No answer returned." }
+        { from: "ai", text: stored + (data.answer || data.error || "No answer returned.") }
       ]);
 
     } catch {
@@ -101,7 +105,7 @@ export default function Chat() {
         ))}
 
         {loading && (
-          <Message from="ai" text="🔍 Analyzing security..." />
+          <Message from="ai" text={file ? "Reading file, splitting chunks, then embedding..." : "Teaching from the knowledge base..."} />
         )}
       </div>
 
